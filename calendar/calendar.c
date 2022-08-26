@@ -81,33 +81,30 @@ int get_day_of_week(int month, int year) {
     return day;
 }
 
-// Function that prints months names and days of the week
-void print_month(int month, int year) {
-    int i, j, k, days, day;
-    char mName[10];
-    days = get_days_in_month(month, year);
-    day = get_day_of_week(month, year);
-    printf("\n%s %d\n", get_month_name(month, mName), year);
-    printf(" S  M  T  W  T  F  S\n");
-    for (i = 0; i < day; i++) {
-        printf("   ");
-    }
-    for (j = 1; j <= days; j++) {
-        printf("%2d ", j);
-        if ((j + day) % 7 == 0) {
-            printf("\n");
-        }
-    }
-    printf("\n");
-}
-
+// Print calendar
 void print_calendar(int year) {
     int month, day, days, start;
     char mName[20];
 
-    start = get_day_of_week(1, year);
+    printf("\t%d\n", year);
     for (month = 1; month <= 12; month++) {
-        print_month(month, year);
+        days = get_days_in_month(month, year);
+        day = get_day_of_week(month, year);
+
+        // Print month name and day of week
+        printf("\n%s\n", get_month_name(month, mName));
+        printf(" S  M  T  W  T  F  S\n");
+
+        for (int i = 0; i < day; i++) {
+            printf("   ");
+        }
+        for (int j = 1; j <= days; j++) {
+            printf("%2d ", j);
+            if ((j + day) % 7 == 0) {
+                printf("\n");
+            }
+        }
+        printf("\n");
     }
 }
 
